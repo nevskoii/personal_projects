@@ -10,12 +10,12 @@
 ## 📊 Live Demo
 
 > **Interactive dashboards are live at:**  
-> 🔗 [https://nevskoii.github.io/personal_projects/](https://nevskoii.github.io/personal_projects/)
+> 🔗 [https://nevskoii.github.io/personal_projects/](https://nevskoii.github.io/monitoring_dashboards_dc/)
 
 | Dashboard | Description |
 |-----------|-------------|
-| [⚡ Power Consumption](https://nevskoii.github.io/personal_projects/heatmap_consumption.html) | Actual vs. projected capacity with color-coded load indicators |
-| [💰 Sales Risk Heatmap](https://nevskoii.github.io/personal_projects/heatmap_sales.html) | Commercial sales analysis with risk levels (120% industry norm) |
+| [⚡ Power Consumption](https://nevskoii.github.io/monitoring_dashboards_dc/heatmap_consumption.html) | Actual vs. projected capacity with color-coded load indicators |
+| [💰 Sales Risk Heatmap](https://nevskoii.github.io/monitoring_dashboards_dc/heatmap_sales.html) | Commercial sales analysis with risk levels (120% industry norm) |
 
 ---
 
