@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Datacom | Power Monitoring Dashboards</title>
-    <meta name="description" content="Interactive dashboards for monitoring power consumption and sales risks across 25 data centers and 150+ server halls.">
+    <meta name="description" content="SQL-powered interactive dashboards for monitoring power consumption and sales risks across 27 data centers and 113 server halls.">
     <meta name="author" content="Alexander Korshunov">
     <style>
         * {
@@ -42,11 +42,31 @@
             vertical-align: middle;
             font-weight: normal;
         }
+        .sql-badge {
+            background: #0366d6;
+            font-size: 10px;
+        }
         .subtitle {
             color: #586069;
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .tech-item {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #0366d6;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .stats {
             display: flex;
@@ -128,14 +148,14 @@
             flex-wrap: wrap;
             gap: 12px;
             margin: 15px 0;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .color-dot {
             display: inline-block;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 3px;
-            margin-right: 6px;
+            margin-right: 5px;
             vertical-align: middle;
         }
         .btn {
@@ -179,24 +199,32 @@
 <body>
     <div class="container">
         <header>
-            <h1>🏢 Nexus Datacom <span class="badge">Live Dashboard</span></h1>
-            <p class="subtitle">Interactive monitoring of power capacity utilization and commercial sales risks across 25 data centers and 150+ server halls</p>
+            <h1>🏢 Nexus Datacom <span class="badge">Live Dashboard</span> <span class="badge sql-badge">SQL Powered</span></h1>
+            <p class="subtitle">Interactive monitoring of power capacity utilization and commercial sales risks across 27 data centers and 113 server halls</p>
+            
+            <div class="tech-stack">
+                <span class="tech-item">🐍 Python</span>
+                <span class="tech-item">🗄️ SQLite</span>
+                <span class="tech-item">📊 Pandas</span>
+                <span class="tech-item">🎨 Plotly</span>
+                <span class="tech-item">🚀 GitHub Pages</span>
+            </div>
             
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-number">25</div>
+                    <div class="stat-number">27</div>
                     <div class="stat-label">Data Centers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">150+</div>
+                    <div class="stat-number">113</div>
                     <div class="stat-label">Server Halls</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">48 MW</div>
+                    <div class="stat-number">130 MW</div>
                     <div class="stat-label">Total Capacity</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">56%</div>
+                    <div class="stat-number">60%</div>
                     <div class="stat-label">Avg. Utilization</div>
                 </div>
             </div>
@@ -213,15 +241,15 @@
                     <div class="metrics">
                         <div class="metric-row">
                             <span class="metric-label">📊 Total Projected:</span>
-                            <span class="metric-value">48.1 MW</span>
+                            <span class="metric-value">130 MW</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">🔋 Total Actual:</span>
-                            <span class="metric-value">27.1 MW</span>
+                            <span class="metric-value">78 MW</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">📈 Average Load:</span>
-                            <span class="metric-value">56%</span>
+                            <span class="metric-value">60%</span>
                         </div>
                     </div>
                     
@@ -232,7 +260,7 @@
                         <span><span class="color-dot" style="background: #d73027;"></span> 100%+ (Overload)</span>
                     </div>
                     
-                    <a href="heatmap_with_dc_aggregated.html" class="btn" target="_blank">Open Dashboard →</a>
+                    <a href="heatmap_consumption.html" class="btn" target="_blank">Open Dashboard →</a>
                 </div>
             </div>
 
@@ -246,15 +274,15 @@
                     <div class="metrics">
                         <div class="metric-row">
                             <span class="metric-label">📊 Total Projected:</span>
-                            <span class="metric-value">48.1 MW</span>
+                            <span class="metric-value">130 MW</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">💵 Total Sold:</span>
-                            <span class="metric-value">45.7 MW</span>
+                            <span class="metric-value">140 MW</span>
                         </div>
                         <div class="metric-row">
                             <span class="metric-label">🎯 Average Sell-through:</span>
-                            <span class="metric-value">95%</span>
+                            <span class="metric-value">108%</span>
                         </div>
                     </div>
                     
@@ -266,13 +294,13 @@
                         <span><span class="color-dot" style="background: #d73027;"></span> 160%+ (Critical ⚠️)</span>
                     </div>
                     
-                    <a href="sales_risk_heatmap.html" class="btn" target="_blank">Open Dashboard →</a>
+                    <a href="heatmap_sales.html" class="btn" target="_blank">Open Dashboard →</a>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>🛠 Built with Python, Pandas, Plotly | 📦 Deployed on GitHub Pages</p>
+            <p>🛠 Built with Python, Pandas, Plotly | 🗄️ SQLite Database | 📦 Deployed on GitHub Pages</p>
             <p>📧 <a href="mailto:alexandreee@gmail.com">alexandreee@gmail.com</a> | 🔗 <a href="https://github.com/nevskoii/personal_projects" target="_blank">View Source on GitHub</a></p>
             <p style="margin-top: 15px;">© 2026 Alexander Korshunov | Data Center Analytics Portfolio</p>
         </footer>
