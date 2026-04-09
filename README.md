@@ -10,7 +10,7 @@
 ## 📊 Live Demo
 
 > **Interactive dashboards are live at:**  
-> 🔗 [https://nevskoii.github.io/personal_projects/](https://nevskoii.github.io/monitoring_dashboards_dc/)
+> 🔗 [https://nevskoii.github.io/monitoring_dashboards_dc/](https://nevskoii.github.io/monitoring_dashboards_dc/)
 
 | Dashboard | Description |
 |-----------|-------------|
