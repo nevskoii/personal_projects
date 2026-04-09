@@ -39,22 +39,7 @@
 | **Hosting** | GitHub Pages |
 | **Version Control** | Git, GitHub |
 
----
-
-## 📁 Project Structure
-personal_projects/
-├── index.html # Portal page
-├── heatmap_consumption.html # Power consumption dashboard
-├── heatmap_sales.html # Sales risk dashboard
-├── generate_dashboards.py # Python script (SQL + Plotly)
-├── data/
-│ ├── nexus_datacom.db # SQLite database
-│ └── README.md # Database schema docs
-└── README.md # This file
-
-text
-
----
+--- 
 
 ## 📈 Key Metrics
 
@@ -77,44 +62,12 @@ text
 | Apex-4 / Hall-02 | 21% | 27% | 🟢 Underutilized |
 
 ---
+## 📬 Contact
 
-## 🚀 How to Run Locally
-
-### 1. Clone repository
-```bash
-git clone https://github.com/nevskoii/personal_projects.git
-cd personal_projects
-2. Install dependencies
-bash
-pip install pandas plotly numpy
-3. Generate database and dashboards
-bash
-python generate_dashboards.py
-4. Open in browser
-heatmap_consumption.html
-
-heatmap_sales.html
-
-🎨 Color Schemes
-Power Consumption
-Color	Load %	Status
-🟢 Green	0-60%	Normal
-🟡 Yellow	60-80%	Attention
-🟠 Orange	80-100%	High Load
-🔴 Red	100%+	Overload
-Sales Risk
-Color	Sell-through	Risk Level
-🟢 Light Green	<100%	Low Risk
-🟢 Dark Green	100-120%	Optimal ✓
-🟡 Yellow	120-140%	Warning ⚠
-🟠 Orange	140-160%	High Risk ⚠️
-🔴 Red	160%+	Critical ⚠️
-📬 Contact
-Alexander Korshunov
-📧 alexandreee@gmail.com
-💻 GitHub
-
-📄 License
-MIT License — free for personal and portfolio use.
+**Alexander Korshunov**  
+📧 [alexandreee@gmail.com](mailto:alexandreee@gmail.com)  
+💼 [LinkedIn](https://linkedin.com/in/askorshunov)  
+💻 [GitHub](https://github.com/nevskoii)  
+📱 Telegram: [@o0o00o0o0](https://t.me/o0o00o0o0)
 
 
