@@ -3,52 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Datacom Dashboards</title>
+    <title>Nexus Datacom | Power Monitoring Dashboards</title>
+    <meta name="description" content="Interactive dashboards for monitoring power consumption and sales risks across 25 data centers and 150+ server halls.">
+    <meta name="author" content="Alexander Korshunov">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
-            background: #f5f7fa;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
         }
         h1 {
+            font-size: 2.5rem;
             color: #1a1a2e;
-            border-left: 4px solid #0366d6;
-            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 12px;
+            vertical-align: middle;
+            font-weight: normal;
+        }
+        .subtitle {
+            color: #586069;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0366d6;
+        }
+        .stat-label {
+            color: #586069;
+            font-size: 0.85rem;
         }
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 30px;
             margin: 40px 0;
         }
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
-        .card h2 {
-            margin: 0 0 12px 0;
-            color: #0366d6;
+        .card-header {
+            background: #0366d6;
+            color: white;
+            padding: 20px;
         }
-        .card p {
-            color: #586069;
+        .card-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .card-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        .card-body {
+            padding: 24px;
+        }
+        .metrics {
+            background: #f6f8fa;
+            border-radius: 8px;
+            padding: 12px;
             margin-bottom: 20px;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+        .metric-label {
+            color: #586069;
+        }
+        .metric-value {
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+        .color-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 15px 0;
+            font-size: 0.8rem;
+        }
+        .color-dot {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: middle;
         }
         .btn {
             display: inline-block;
             background: #0366d6;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
         }
         .btn:hover {
             background: #0250a3;
@@ -56,42 +154,128 @@
         footer {
             text-align: center;
             margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #e1e4e8;
+            padding-top: 30px;
+            border-top: 1px solid #d1d5da;
             color: #586069;
+            font-size: 0.85rem;
         }
-        .badge {
-            display: inline-block;
-            background: #28a745;
-            color: white;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-left: 10px;
+        footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 700px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>🏢 Nexus Datacom <span class="badge">Live Dashboard</span></h1>
-    <p>Интерактивные дашборды для мониторинга загрузки и продаж мощностей в 25 дата-центрах.</p>
+    <div class="container">
+        <header>
+            <h1>🏢 Nexus Datacom <span class="badge">Live Dashboard</span></h1>
+            <p class="subtitle">Interactive monitoring of power capacity utilization and commercial sales risks across 25 data centers and 150+ server halls</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Data Centers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Server Halls</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">48 MW</div>
+                    <div class="stat-label">Total Capacity</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">56%</div>
+                    <div class="stat-label">Avg. Utilization</div>
+                </div>
+            </div>
+        </header>
 
-    <div class="dashboard-grid">
-        <div class="card">
-            <h2>⚡ Power Consumption</h2>
-            <p>Фактическая загрузка vs проектная мощность. Цветовая индикация от зеленого (0-60%) до красного (100%+).</p>
-            <a href="heatmap_with_dc_aggregated.html" class="btn" target="_blank">Открыть дашборд →</a>
+        <div class="dashboard-grid">
+            <!-- Dashboard 1: Power Consumption -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>⚡ Power Consumption</h2>
+                    <p>Actual vs. Projected Capacity</p>
+                </div>
+                <div class="card-body">
+                    <div class="metrics">
+                        <div class="metric-row">
+                            <span class="metric-label">📊 Total Projected:</span>
+                            <span class="metric-value">48.1 MW</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">🔋 Total Actual:</span>
+                            <span class="metric-value">27.1 MW</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">📈 Average Load:</span>
+                            <span class="metric-value">56%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="color-legend">
+                        <span><span class="color-dot" style="background: #1a9850;"></span> 0-60% (Normal)</span>
+                        <span><span class="color-dot" style="background: #fee08b;"></span> 60-80% (Attention)</span>
+                        <span><span class="color-dot" style="background: #fdae61;"></span> 80-100% (High)</span>
+                        <span><span class="color-dot" style="background: #d73027;"></span> 100%+ (Overload)</span>
+                    </div>
+                    
+                    <a href="heatmap_with_dc_aggregated.html" class="btn" target="_blank">Open Dashboard →</a>
+                </div>
+            </div>
+
+            <!-- Dashboard 2: Sales Risk -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>💰 Sales Risk</h2>
+                    <p>Commercial Power Sales Analysis</p>
+                </div>
+                <div class="card-body">
+                    <div class="metrics">
+                        <div class="metric-row">
+                            <span class="metric-label">📊 Total Projected:</span>
+                            <span class="metric-value">48.1 MW</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">💵 Total Sold:</span>
+                            <span class="metric-value">45.7 MW</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">🎯 Average Sell-through:</span>
+                            <span class="metric-value">95%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="color-legend">
+                        <span><span class="color-dot" style="background: #91cf60;"></span> &lt;100% (Low Risk)</span>
+                        <span><span class="color-dot" style="background: #1a9850;"></span> 100-120% (Optimal ✓)</span>
+                        <span><span class="color-dot" style="background: #fee08b;"></span> 120-140% (Warning ⚠)</span>
+                        <span><span class="color-dot" style="background: #fdae61;"></span> 140-160% (High Risk ⚠️)</span>
+                        <span><span class="color-dot" style="background: #d73027;"></span> 160%+ (Critical ⚠️)</span>
+                    </div>
+                    
+                    <a href="sales_risk_heatmap.html" class="btn" target="_blank">Open Dashboard →</a>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>💰 Sales Risk</h2>
-            <p>Коммерческие продажи с уровнями риска. Оптимальная зона — до 120%, выше — зоны внимания и критики.</p>
-            <a href="sales_risk_heatmap.html" class="btn" target="_blank">Открыть дашборд →</a>
-        </div>
+        <footer>
+            <p>🛠 Built with Python, Pandas, Plotly | 📦 Deployed on GitHub Pages</p>
+            <p>📧 <a href="mailto:alexandreee@gmail.com">alexandreee@gmail.com</a> | 🔗 <a href="https://github.com/nevskoii/personal_projects" target="_blank">View Source on GitHub</a></p>
+            <p style="margin-top: 15px;">© 2026 Alexander Korshunov | Data Center Analytics Portfolio</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>🛠 Built with Python, Pandas, Plotly | 📦 Deployed on GitHub Pages</p>
-        <p><a href="https://github.com/nevskoii/personal_projects" style="color: #0366d6;">View source on GitHub</a></p>
-    </footer>
 </body>
 </html>
