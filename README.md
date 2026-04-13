@@ -1,4 +1,4 @@
-# Nexus Datacom | Power & Sales Monitoring Dashboards
+# Data Center Operator | Power & Sales Monitoring Dashboards
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![SQLite](https://img.shields.io/badge/SQLite-3.x-blue.svg)](https://sqlite.org/)
